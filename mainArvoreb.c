@@ -5,8 +5,8 @@ int main() {
  
   
   Arvore *a = criar();
- 
-    /*a = inserir(a, 'F');
+ /*=================================== INSERÇÃO DE LETRAS T= 2  ======================================*/
+ /*  a = inserir(a, 'F');
     a = inserir(a, 'S');
     a = inserir(a, 'Q');
     a = inserir(a, 'K');
@@ -26,8 +26,19 @@ int main() {
     a = inserir(a, 'Y');
     a = inserir(a, 'D');
     a = inserir(a, 'Z');
-    a = inserir(a, 'E');*/
-   
+    a = inserir(a, 'E');
+
+
+   // CASOS DE REMOÇÕES
+   a=remover(a, 'E'); // caso 1
+   a=remover(a, 'F'); // caso 2A
+   a=remover(a, 'M'); // caso 2B
+   a=remover(a, 'N'); // caso 2C
+   a=remover(a, 'V'); // caso 3A
+   a=remover(a, 'P'); // caso 3B
+
+
+   /*=========================== INSERÇÃO DE NÚMEROS T= 3 ===================================================*/
     a = inserir(a, 91);
     a = inserir(a, 90);
     a = inserir(a, 80);
@@ -51,6 +62,15 @@ int main() {
     a = inserir(a, 6);
     a = inserir(a, 21);
     a = inserir(a, 67);
+
+    //CASOS DE REMOÇÕES
+    a= remover(a, 67); //caso 1
+    a= remover(a, 10); //caso 2A
+    a= remover(a, 8); //caso 2B
+    a= remover(a, 80); //caso 2C
+    a= remover(a, 68); //caso 3A
+    a= remover(a, 22); //caso 3B
+
     imprimir(a, 0);
    
 

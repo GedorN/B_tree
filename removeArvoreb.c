@@ -1,12 +1,13 @@
 #include "arvoreb.h"
 
-/*=======================================Função Remover de uma Folha==========================================================
-Argumentos:
-Arvore* a: recebe um ponteiro para a folha em que a chave será eliminada.
-int index: corresponde ao índice da posição no vetor em que  a chave eliminada se encontra.
-
-return:
-A função retorna o ponteiro Arvore* a , ou seja, um ponteiro para a própria onde a chave foi removida.*/
+/*=======================================Função Remover de uma Folha=========================================================*\
+|*    *Argumentos:                                                                                                           *|
+|*        -Arvore* a: recebe um ponteiro para a folha em que a chave será eliminada.                                         *|
+|*        -int index: corresponde ao índice da posição no vetor em que  a chave eliminada se encontra.                       *|
+|*                                                                                                                           *|                      
+|*    *return:                                                                                                               *|
+|*        -A função retorna o ponteiro Arvore* a , ou seja, um ponteiro para a própria onde a chave foi removida.            *|
+\*===========================================================================================================================*/
 
 Arvore *remover_de_folha(Arvore *a, int index)
 {
@@ -22,13 +23,14 @@ Arvore *remover_de_folha(Arvore *a, int index)
     return a;
 }
 
-/*=====================================Função Remover de um Nó não Folha=================================================
-Argumentos:
-Arvore* a: recebe um ponteiro para o nó, que não é folha, em que se deseja remover uma chave.
-int index: contém o indice correspondente à posição no vetor  da chave que será removida.
-
-return:
-A função retorna o ponteiro Árvore* a, ou seja, um ponteiro para o nó em que a chave foi eliminada.*/
+/*=====================================Função Remover de um Nó não Folha=================================================*\
+|*    *Argumentos:                                                                                                       *|
+|*        -Arvore* a: recebe um ponteiro para o nó, que não é folha, em que se deseja remover uma chave.                 *|
+|*        -int index: contém o indice correspondente à posição no vetor  da chave que será removida.                     *|
+|*                                                                                                                       *|
+|*    *return:                                                                                                           *|
+|*        -A função retorna o ponteiro Árvore* a, ou seja, um ponteiro para o nó em que a chave foi eliminada.           *|
+\*=======================================================================================================================*/
 
 Arvore *remover_de_nao_folha(Arvore *a, int index)
 {
@@ -101,21 +103,51 @@ Arvore *remover_de_nao_folha(Arvore *a, int index)
     return a;
 }
 
-//Função para verificar se raiz ficou vazia
+/*============================================ Função verificar raiz vazia ===============================*\
+|*    *Argumentos:                                                                                        *|
+|*        -Ponteiro para raiz de árvore previamente criada                                                *|
+|*                                                                                                        *|
+|*    *retorno:                                                                                           *|
+|*        -Ponteiro para nó filho abaixo não vazio, se houver                                             *|
+|*        - NULL se não houver                                                                            *|
+\*========================================================================================================*/
 Arvore *verificar_raiz_vazia(Arvore *raiz)
 {
-    /*Se após a remoção a raiz tiver 0 chaves, tornar o primeiro filho a nova raiz se existir filho; caso contrário ajustar a raiz para NULL. Liberar a raiz antiga*/
+    int i;
 
-    /* if (raiz->n == 0)
+    if(!raiz->folha)
     {
-        raiz->chaves[raiz->n]= raiz->filhos[0]->chaves[raiz->filhos[0]->n - 1];
-    }*/
+        if(raiz->n == 0)
+        {
+            for(i = 0; i < 2 * T; i++)
+            {
+                if(raiz->filhos[i] != NULL && raiz->filhos[i]->n > 0)
+                {
+                    Arvore *aux= raiz;
+                    raiz= raiz->filhos[i];
+                    free(aux);
+                    return raiz;
+                }
+            }
+
+            if( i == 2* T)
+            {
+                free(raiz);
+                return NULL;
+            }
+        }
+    }
 
     return raiz;
 }
 
-/*==========================================Função  Buscar Index Remoçã ===================================================
-    Essa função que retorna o index da primeira chave maior ou igual à chave*/
+/*==========================================Função  Buscar Index Remoçã ==================================*\
+|*    *Argumentos:                                                                                        *|
+|*        -Ponteiro para nó de árvore                                                                     *|
+|*        -Chave a ser procurada                                                                          *|
+|*    *retorno:                                                                                           *|
+|*        -índice da posição do elemento 'chave'                                                          *|
+\*========================================================================================================*/
 int buscar_index_remocao(Arvore *a, TIPO chave)
 {
 
@@ -130,14 +162,18 @@ int buscar_index_remocao(Arvore *a, TIPO chave)
     return i;
 }
 
-/*====================================================Função Remover===============================================================
-    *Argumentos:
-        -Arvore* a*/
+/*====================================================Função Remover==================================*\
+|*    *Argumentos:                                                                                    *|
+|*        -Ponteiro para nó da árvore                                                                 *|
+|*        -Elemento 'k' a ser retirado                                                                *|
+|*    *retorno:                                                                                       *|
+|*        -Ponteiro para raiz da árvore com o ponteiro removido                                       *|
+\*====================================================================================================*/
 Arvore *remover(Arvore *a, TIPO k)
 {
     int index;
 
-    /*Completar!!!!!!!!!!!!!!*/
+   
     if (a == NULL)
     {
         
@@ -175,13 +211,12 @@ Arvore *remover(Arvore *a, TIPO k)
     }
     if (!a->folha)
     {
-       // printf("\n %d %d ", index > 0, a->filhos[index]->n <= T - 1, a->filhos[index - 1]->n < T - 1);
-         //printf("\n %d %d ",index == 0, a->filhos[index + 1]->n <= T - 1);
+       
         
         /*============== CASO 3B  =============*/
         if (index > 0 && a->filhos[index]->n < T - 1 && a->filhos[index - 1]->n <= T - 1)
         {
-            printf("\n\nRÁÁÁ YEA YEA");
+          
 
             a->filhos[index - 1] = inserir(a->filhos[index - 1], a->chaves[index - 1]);
             for (int i = a->filhos[index]->n - 1; i >= 0; i--)

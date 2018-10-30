@@ -1,15 +1,15 @@
 #include "arvoreb.h"
 
-/*FunÃ§Ã£o para buscar uma chave em uma Ã¡rvore B:*/
+/*Função para buscar uma chave em uma Árvore B:*/
 void imprimir(Arvore *a, int nivel) {
   int i;
 
-  /*Imprime recuo para definir o nÃ­vel do nÃ³: */
+  /*Imprime recuo para definir o nÃ­vel do nó: */
   for (i = 0; i < nivel; i++) {
     printf("  ");
   }
 
-  /*Imprime as chaves armazenadas no nÃ³: */
+  /*Imprime as chaves armazenadas no nó: */
   printf("|");
   for (i = 0; i < a->n; i++) {
     printf("%d|", a->chaves[i]);
